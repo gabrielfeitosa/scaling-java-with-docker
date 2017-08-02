@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  smsproducer:
+    image: smsproducer:latest
+    build: SMSProducer/
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq      
+  smsconsumer:
+    image: smsconsumer:latest
+    build: SMSConsumer/
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq      
+
