@@ -24,7 +24,7 @@ public class SMSProducer {
         Random randomGenerator = new Random();
         while(true){
             SMS sms = new SMS(index, randomGenerator.nextInt(999999), "SMS message");
-//            log.info("Sending SMS {}", sms);
+            log.debug("Sending SMS {}", sms);
             source.output().send(MessageBuilder.withPayload(sms).build());
             Thread.sleep(100);
             index++;
